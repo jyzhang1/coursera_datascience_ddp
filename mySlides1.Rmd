@@ -1,0 +1,48 @@
+---
+title: "Developing Data Products"
+author: "Zhang Jinyan"
+date: "06/10/2016"
+output: ioslides_presentation
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Linear Regression Overview
+
+In linear regression, we study how to relate an outcome $Y$ to one or more predictor variables $X_1$, ..., $X_i$ where the $X$ may be either continuous or categorical in a linear fashion. 
+
+``` {r "slide 1"}
+fit1 <- lm(Petal.Length ~ Petal.Width, data = iris)
+par(mar = c(7, 6, 0, 1), bg = NA)
+plot(x = iris$Petal.Width,
+     y = iris$Petal.Length,
+     xlab = "Width of Petal",
+     ylab = "Length of Petal",
+     pch = 16,
+     cex = 1.2)
+abline(fit1,
+       col = "steelblue",
+       lwd = 2)
+```
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+- Bullet 4
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+

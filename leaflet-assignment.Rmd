@@ -23,7 +23,7 @@ opts_chunk$set(message = FALSE,
 library(leaflet)
 library(htmltools)
 setwd("/Users/Jinyan/Data Science/Data Science Courses/09_DevelopingDataProducts//coursera_datascience_ddp/")
-data <- read.table("assignment1-data", sep = ",")
+data <- read.table("data/assignment1-data", sep = ",")
 names(data) <- c("place", "lat", "lng", "url")
 
 attractSites <- paste("<a href = '", data$url, "'>", data$place, "</a>", sep = "")

@@ -1,0 +1,35 @@
+---
+title: "Top Attractions in Singapore"
+author: "Zhang Jinyan"
+date: "07/10/2016"
+output: html_document
+---
+
+```{r "setup", echo = FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE, 
+               error = FALSE, 
+               warning = FALSE, 
+               echo = FALSE,
+               comment = NA, 
+               fig.align = 'center', 
+               dpi = 100, tidy = F, 
+               cache.path = '.cache/', 
+               fig.path = 'fig/')
+```
+
+
+```{r}
+library(leaflet)
+library(htmltools)
+setwd("/Users/Jinyan/Data Science/Data Science Courses/09_DevelopingDataProducts//coursera_datascience_ddp/")
+data <- read.table("assignment1-data", sep = ",")
+names(data) <- c("place", "lat", "lng", "url")
+
+attractSites <- paste("<a href = '", data$url, "'>", data$place, "</a>", sep = "")
+
+data %>%
+      leaflet() %>%
+      addTiles() %>%
+      addMarkers(popup = attractSites)
+```

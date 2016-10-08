@@ -1,0 +1,46 @@
+---
+title: "Plotly with Air Quality Data Set"
+author: "Zhang Jinyan"
+date: "07/10/2016"
+output: html_document
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(message = FALSE, 
+                      error = FALSE, 
+                      warning = FALSE, 
+                      echo = FALSE,
+                      comment = NA, 
+                      fig.align = 'center', 
+                      dpi = 100, 
+                      tidy = F, 
+                      fig.path = 'fig/')
+```
+
+#### These graphs are created using the air quality data set. It shows the trend in the averages of different air quality measurements throughout each month.
+
+```{r plotly-1}
+library(plotly)
+library(reshape2)
+library(dplyr)
+
+air <- airquality
+air$Month <- factor(month.abb[air$Month], 
+                    levels = c("May", "Jun", "Jul", "Aug", "Sep"))
+names(air)[1:4] <- c("Ozone (parts per billion)", 
+                     "Solar Radiation (Langleys)",
+                     "Wind Speed (miles per hour)",
+                     "Temperature (degrees F)")
+                     
+airMelt <- melt(data = air, id.vars = c("Day", "Month"))
+
+g <- ggplot(data = airMelt,
+            aes(x = Month, y = value))
+g <- g + geom_boxplot(na.rm = TRUE,
+                      aes(fill = Month)) +
+      facet_wrap(~ variable) +
+      scale_fill_brewer(palette = "Accent") +
+      labs(x = "", y = "")
+
+ggplotly(g)
+```

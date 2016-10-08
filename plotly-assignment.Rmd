@@ -1,11 +1,11 @@
 ---
-title: "Plotly with Air Quality Data Set"
+title: "RStudio Presentation with Plotly Assignment"
 author: "Zhang Jinyan"
-date: "07/10/2016"
-output: html_document
+date: "08/10/2016"
+output: ioslides_presentation
 ---
 
-```{r setup, echo = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE, 
                       error = FALSE, 
                       warning = FALSE, 
@@ -17,9 +17,21 @@ knitr::opts_chunk$set(message = FALSE,
                       fig.path = 'fig/')
 ```
 
-#### These graphs are created using the air quality data set. It shows the trend in the averages of different air quality measurements throughout each month.
+## Data Set
 
-```{r plotly-1}
+We will be using the data set from R: **airquality**.
+It consists of the following variables:
+
+* **Ozone**: Mean ozone in parts per billion
+* **Solar**: Radiation: Solar radiation measured in Langleys
+* **Wind**: Average win speed in miles per hour
+* **Temperature**: Maximum daily temperature in degrees Fahrenheit
+* **Month**: The month the measurements were taken
+* **Day**: The day the measurements were taken
+
+## Plotly Graph of Air Quality
+
+```{r plotly-1, echo = FALSE}
 library(plotly)
 library(reshape2)
 library(dplyr)
@@ -44,3 +56,4 @@ g <- g + geom_boxplot(na.rm = TRUE,
 
 ggplotly(g)
 ```
+

@@ -1,0 +1,108 @@
+Impact of Infectious Diseases in Singapore
+========================================================
+author: Zhang Jinyan
+date: `r format(Sys.Date(), format="%d %B %Y")`
+autosize: true
+transition: rotate
+font-family: "Helvetica"
+
+<br>
+<small>
+Done in submission to Coursera Data Science Specialization:
+<br>
+Developing Data Products
+</small>
+
+Infectious Disease Burden
+========================================================
+
+Understanding the infectious disease burden in a community helps guide our allocation of resources and responses in these areas of need.
+
+Examples of infectious diseases with high incidences based on [MOH Weekly Infectious Diseases Bulletin](https://www.moh.gov.sg/content/moh_web/home/statistics/infectiousDiseasesStatistics/weekly_infectiousdiseasesbulletin.html):
+
+- Dengue Fever
+- Hand, Foot, Mouth Disease
+- Mumps
+- Campylobacter Enterosis
+- Salmonellosis
+- Viral Hepatitis A
+
+Weekly Infectious Diseases Bulletin
+========================================================
+
+A screengrab of the bulletin `.csv` file:
+
+![fig1](fig/fig1.png)
+
+Dengue Fever and Salmonellosis 
+========================================================
+```{r "load-data", echo = FALSE, results = "hide"}
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(reshape)
+library(gridExtra)
+setwd("/Users/Jinyan/Data Science/Data Science Courses/09_DevelopingDataProducts/coursera_datascience_ddp")
+source("RstudioPres/read_excel_allsheets.R")
+allSheets <- read_excel_allsheets("RstudioPres/data/weekly_bulletin.xls")
+```
+
+```{r "plot1", echo = FALSE}
+dataID <- data.frame()
+for (i in 1:length(allSheets)) {
+      sheet <- data.frame(allSheets[[i]])
+      sheet <- select(sheet, 
+                      end = End,
+                      dengue = contains("Dengue.Fever"), 
+                      HFM = contains("Hand"),
+                      salmonellosis = contains("Salmon"), 
+                      mumps = contains("Mumps"),
+                      campylo = contains("Campylo"),
+                      hepa = contains("Hepatitis.A")
+                      )
+      dataID <- rbind(dataID, sheet)
+}
+
+valueNA <- c(which(is.na(dataID$end)), which(is.na(dataID$dengue)))
+dataID <- dataID[-valueNA, ]
+
+g1 <- ggplot(data = dataID,
+             aes(x = end, y = dengue))
+g1 <- g1 + geom_line(na.rm = TRUE) +
+      labs(x = "Year",
+           y = "Number of Cases",
+           title = "Dengue Fever") +
+      theme_gray(base_size = 13)
+
+g1 
+```
+
+***
+
+``` {r "plot2", echo = FALSE}
+g2 <- ggplot(data = dataID,
+             aes(x = end, y = salmonellosis))
+g2 <- g2 + geom_line(na.rm = TRUE) +
+      labs(x = "Year",
+           y = "Number of Cases",
+           title = "Salmonellosis") +
+      theme_gray(base_size = 13)
+g2
+
+```
+
+Shiny App
+========================================================
+
+![fig2](fig/fig2.png)
+
+[Click here for Shiny App](https://jyzhang.shinyapps.io/plotId/)
+
+Summary Slide
+========================================================
+- Done presentation using RStudio Presentation
+- Included codes for displaying of graphs with `ggplot2`
+- Embedded screengrab images
+- Embedded links to data set and shiny application
+- Uploaded presentation on GitHub
+- Slides hosted on GitHub Page

@@ -25,6 +25,7 @@ shinyUI(fluidPage(
                     "file is downloaded and loaded onto", 
                     code("R"),
                     ". A copy of the file that is used to plot this graph is also loaded onto GitHub for reference. The weekly bulletin is uploaded by MOH every week."),
+                  p("Please wait a while for the graph to load from the server."),
                   plotOutput("plot1")
           )
   )

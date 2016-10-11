@@ -4,14 +4,13 @@ library(dplyr)
 library(ggplot2)
 library(reshape)
 
-setwd("~/Data Science/Data Science Courses/09_DevelopingDataProducts/coursera_datascience_ddp/")
-source("plotId/read_excel_allsheets.R")
+source("read_excel_allsheets.R")
 
 # url <- "https://www.moh.gov.sg/content/dam/moh_web/Statistics/Healthcare_Institution_Statistics/More_Statistics.../Weekly%20infectious%20bulletin_cases.xls"
 # fileDest <- "~/Data Science/Data Science Courses/09_DevelopingDataProducts/customApp/plotId/data/weekly_bulletin.xls"
 # download.file(url, destfile = fileDest, method = "curl")
 
-allSheets <- read_excel_allsheets("plotId/data/weekly_bulletin.xls")
+allSheets <- read_excel_allsheets("data/weekly_bulletin.xls")
 
 dataID <- data.frame()
 

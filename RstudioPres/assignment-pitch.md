@@ -44,12 +44,11 @@ Dengue Fever and Salmonellosis
 
 ![plot of chunk plot2](assignment-pitch-figure/plot2-1.png)
 
-Shiny App
+Shiny Application
 ========================================================
 
 ![fig2](fig/fig2.png)
-
-[Click here for Shiny App](https://jyzhang.shinyapps.io/plotId/)
+<small>Using the [Shiny Application](https://jyzhang.shinyapps.io/plotId/) allows users to browse through different infectious diseases to see their trends and burdens.</small>
 
 Summary Slide
 ========================================================
